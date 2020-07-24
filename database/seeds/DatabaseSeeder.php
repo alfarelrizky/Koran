@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->Call(NewsSeeder::class);
         $this->Call(CategorySeeder::class);
+        $this->Call(TagSeeder::class);
     }
 }

@@ -42,7 +42,7 @@
                             <div class="fh5co_hover_news_img">
                                 <div class="fh5co_news_img"><img src="{{asset($item->file)}}" alt=""/></div>
                                 <div>
-                                    <a href="{{route('news.detail',$item->id)}}" class="d-block fh5co_small_post_heading"><span class="">{{$item->title}}</span></a>
+                                    <a href="{{route('news.detail',$item->id)}}" class="d-block fh5co_small_post_heading"><span style="color:black;">{{$item->title}}</span></a>
                                     <div class="c_g"><i class="fa fa-clock-o"></i> {{$item->created_at->format('M d, Y')}}</div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="pt-2">
                                 <a href="#" class="d-block fh5co_small_post_heading fh5co_small_post_heading_1">
-                                <span class="">The top 10 funniest videos on YouTube </span></a>
+                                <span style="color:black;">The top 10 funniest videos on YouTube </span></a>
                                 <div class="c_g"><i class="fa fa-clock-o"></i> Oct 16,2017</div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             </div>
                             <div class="pt-2">
                                 <a href="#" class="d-block fh5co_small_post_heading fh5co_small_post_heading_1">
-                                <span class="">The top 10 embedded YouTube videos this month</span></a>
+                                <span style="color:black;">The top 10 embedded YouTube videos this month</span></a>
                                 <div class="c_g"><i class="fa fa-clock-o"></i> Oct 16,2017</div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                             </div>
                             <div class="pt-2">
                                 <a href="#" class="d-block fh5co_small_post_heading fh5co_small_post_heading_1">
-                                <span class="">The top 10 best computer speakers in the market</span></a>
+                                <span style="color:black;">The top 10 best computer speakers in the market</span></a>
                                 <div class="c_g"><i class="fa fa-clock-o"></i> Oct 16,2017</div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                             </div>
                             <div class="pt-2">
                                 <a href="#" class="d-block fh5co_small_post_heading fh5co_small_post_heading_1">
-                                    <span class="">The top 10 best computer speakers in the market</span></a>
+                                    <span style="color:black;">The top 10 best computer speakers in the market</span></a>
                                 <div class="c_g"><i class="fa fa-clock-o"></i> Oct 16,2017</div>
                             </div>
                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\category;
 use App\news;
+use App\tag;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,17 +14,15 @@ class CategoryController extends Controller
     {
         // mode
         $kategori = $sample->NamaKategori;
+        // getdata tag
+        $all_tag = tag::limit(15)->get();
         // halaman
-        $view_old = $sample->viewer;
-        $tampung['viewer'] = $view_old + 1;
-        $sample->update($tampung);
+        $populer = news::limit(9)->where('file-type', 'gambar')->where('category_id', $sample->id)->orderby('created_at', 'desc')->orderby('viewer', 'desc')->get();
+        $terbaru = news::limit(4)->where('file-type', 'gambar')->where('category_id', $sample->id)->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->get();
 
-        $populer = news::limit(9)->where('file-type', 'gambar')->where('category_id', $sample->id)->orderby('viewer', 'asc')->get();
-        $terbaru = news::limit(4)->where('file-type', 'gambar')->where('category_id', $sample->id)->orderby('viewer', 'asc')->orderby('updated_at', 'asc')->get();
+        $data = news::where('category_id', $sample->id)->orderby('created_at', 'desc')->paginate(10);
 
-        $data = news::where('category_id', $sample->id)->paginate(10);
-
-        return view('news/filter',compact('data', 'populer', 'terbaru','kategori'));
+        return view('news/filter',compact('all_tag','data', 'populer', 'terbaru','kategori'));
     }
 
     /**

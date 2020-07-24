@@ -21,6 +21,7 @@ class CreateNewsTable extends Migration
             $table->string('file-type',10);
             $table->string('file');
             $table->string('media_massa',100);
+            $table->string('editor', 100);
             $table->integer('viewer');
             $table->timestamps();
         });

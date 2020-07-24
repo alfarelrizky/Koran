@@ -13,5 +13,7 @@ Route::prefix('news')->group(function() {
     Route::get('/detail/{sample:id}', 'NewsController@detail')->name('news.detail');
     // filter category
     route::get('/filtercategory/{sample:id}','CategoryController@filter')->name('category.filter');
+    // filter Tag
+    route::get('/filterTag/{sample:id}','TagController@filter')->name('tag.filter');
 
 });

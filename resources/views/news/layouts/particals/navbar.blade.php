@@ -53,12 +53,20 @@
             <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-            <a class="navbar-brand" href="#"><img src="{{asset('logo/logo.png')}}" alt="img" class="mobile_logo_width"/></a>
+            <a class="navbar-brand" href="#"><img src="{{asset('logo/logo.png')}}" alt="img" class="mobile_logo_width"/></a> 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{route('news.index')}}">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item {{request()->is('news') ? 'active':''}}">
+                        <?php
+                            $list_kategori = App\Category::limit(10)->get();
+                        ?>
+                        <a class="nav-link" style='margin:0px 5px !important;' href="{{route('news.index')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    @foreach ($list_kategori as $item)
+                    <li class="nav-item {{request()->is('news/filtercategory/'.$item->id) ? 'active':''}}">
+                        <a class="nav-link" style='margin:0px 5px !important;' href="{{route('category.filter',$item->id)}}">{{$item->NamaKategori}} <span class="sr-only">(current)</span></a>
+                    </li>
+                    @endforeach
                 </ul>
             </div>
         </nav>

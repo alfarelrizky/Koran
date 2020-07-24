@@ -13,6 +13,7 @@ $factory->define(news::class, function (Faker $faker) {
         'file-type' => 'gambar', 
         'file' => 'asset-news/images/default.jpg',
         'media_massa' => $faker->company(),
+        'editor' => $faker->name,
         'viewer' => $faker->numberBetween($min=0 , $max=100),
     ];
 });

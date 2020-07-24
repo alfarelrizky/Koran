@@ -21,6 +21,19 @@
                         </a>
                     </div>
                     {!!$detail->content!!}
+                    <div class='mt-4'>
+                        <div>
+                            Editor : <b>{{$detail->editor}}</b>
+                        </div>
+                        <div>
+                            <b><i class="fa fa-tags"></i>Tag</b> : 
+                            @foreach ($detail->tag as $item)
+                            <a href="{{route('tag.filter',$item->id)}}" class="fh5co_tagg" style='padding:5px;border-radius: 25px;'>
+                                    <small>{{$item->NamaTag}}</small>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
                     <div>
@@ -28,18 +41,9 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="fh5co_tags_all">
-                        <a href="#" class="fh5co_tagg">Business</a>
-                        <a href="#" class="fh5co_tagg">Technology</a>
-                        <a href="#" class="fh5co_tagg">Sport</a>
-                        <a href="#" class="fh5co_tagg">Art</a>
-                        <a href="#" class="fh5co_tagg">Lifestyle</a>
-                        <a href="#" class="fh5co_tagg">Three</a>
-                        <a href="#" class="fh5co_tagg">Photography</a>
-                        <a href="#" class="fh5co_tagg">Lifestyle</a>
-                        <a href="#" class="fh5co_tagg">Art</a>
-                        <a href="#" class="fh5co_tagg">Education</a>
-                        <a href="#" class="fh5co_tagg">Social</a>
-                        <a href="#" class="fh5co_tagg">Three</a>
+                        @foreach ($all_tag as $item)
+                            <a href="{{route('tag.filter',$item->id)}}" class="fh5co_tagg">{{$item->NamaTag}}</a>
+                        @endforeach
                     </div>
                     <div>
                         <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Terbaru</div>

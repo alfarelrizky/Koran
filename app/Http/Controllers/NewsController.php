@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\category;
 use App\news;
+use App\tag;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -16,9 +17,9 @@ class NewsController extends Controller
     public function index()
     {
         // halaman
-        $data_jumbotron = news::limit(5)->where('file-type','gambar')->orderby('updated_at', 'asc')->get();
-        $terbaru = news::limit(5)->where('file-type','gambar')->orderby('created_at','asc')->get();
-        $trending = news::limit(10)->where('file-type','gambar')->orderby('viewer','asc')->get();
+        $data_jumbotron = news::limit(5)->where('file-type','gambar')->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->get();
+        $terbaru = news::limit(5)->where('file-type','gambar')->orderby('created_at', 'desc')->orderby('created_at','desc')->get();
+        $trending = news::limit(10)->where('file-type','gambar')->orderby('created_at', 'desc')->orderby('viewer','desc')->get();
         return view('news/index',compact('data_jumbotron','trending','terbaru','category'));
     }
 
@@ -31,10 +32,13 @@ class NewsController extends Controller
         $tampung['viewer'] = $view_old + 1;
         $sample->update($tampung);
 
-        $populer = news::limit(9)->where('file-type', 'gambar')->where('category_id', $sample->category_id)->orderby('viewer', 'asc')->get();
-        $terbaru = news::limit(4)->where('file-type', 'gambar')->where('category_id', $sample->category_id)->orderby('viewer', 'asc')->orderby('updated_at', 'asc')->get();
+        // getdata tag
+        $all_tag = tag::limit(15)->get();
+
+        $populer = news::limit(9)->where('file-type', 'gambar')->where('category_id', $sample->category_id)->orderby('created_at', 'desc')->orderby('viewer', 'desc')->get();
+        $terbaru = news::limit(4)->where('file-type', 'gambar')->where('category_id', $sample->category_id)->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->get();
         
-        return view('news/detail',compact('detail','populer','terbaru'));
+        return view('news/detail',compact('all_tag','detail','populer','terbaru'));
     }
 
     /**

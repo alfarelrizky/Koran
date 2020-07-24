@@ -14,8 +14,10 @@ class CreateNewsTagTable extends Migration
     public function up()
     {
         Schema::create('news_tag', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->foreignId('news_id')->constrained('news');
+            $table->foreignId('tag_id')->constrained('tags');
+
+            $table->primary(['news_id','tag_id']);
         });
     }
 

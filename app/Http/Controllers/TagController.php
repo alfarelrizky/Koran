@@ -2,11 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\news;
 use App\tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
+    public function filter(tag $sample)
+    {
+        // mode
+        $tag = $sample->NamaTag;
+
+        // getdata news
+        $data = $sample->news()->paginate(10);
+
+        // getdata tag
+        $all_tag = tag::limit(15)->get();
+
+        // halaman
+        $populer = $sample->news_terpopuler()->limit(9)->get();
+        $terbaru = $sample->news_terbaru()->limit(4)->get();
+
+        return view('news/filter', compact('all_tag','data', 'populer', 'terbaru', 'tag'));
+    }
     /**
      * Display a listing of the resource.
      *

@@ -5,7 +5,7 @@
             <div class="clearfix"></div>
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="footer_main_title py-3"> Tentang</div>
-                <div class="footer_sub_about pb-3"> Website <b>Koran</b> Di Bangun Atas Dasar Penyedia Pelayanan Informasi Yang <b>independent</b> Demi Mewujudkan Berjalannya <b>Demokrasi</b> sebagai Perantara Pemerintah dan Rakyat 
+                <div class="footer_sub_about pb-3"> Website <b>Koran</b> Di Bangun Atas Dasar Penyedia Pelayanan Informasi Yang <b>independent</b> Demi Mewujudkan Berjalannya <b>Demokrasi</b> sebagai Jendela Informasi 
                 </div>
                 <div class="footer_mediya_icon">
                     <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
@@ -35,7 +35,7 @@
             </div>
             <div class="col-12 col-md-5 col-lg-3 position_footer_relative">
                 <?php
-                    $populer = App\news::limit(3)->where('file-type','gambar')->orderby('viewer','asc')->get();
+                    $populer = App\news::limit(3)->where('file-type','gambar')->orderby('viewer','desc')->get();
                 ?>
                 <div class="footer_main_title py-3"> Terpopuler</div>
                 @foreach ($populer as $item)

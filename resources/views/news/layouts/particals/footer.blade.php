@@ -25,25 +25,23 @@
             <div class="col-12 col-md-3 col-lg-2">
                 <div class="footer_main_title py-3"> Kategori</div>
                 <ul class="footer_menu">
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Business</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Entertainment</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Environment</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Health</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Life style</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Politics</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Technology</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; World</a></li>
+                    <?php
+                        $category = App\category::limit(8)->get();
+                    ?>
+                    @foreach ($category as $item)
+                        <li><a href="{{route('category.filter',$item->id)}}" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; {{$item->NamaKategori}}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-12 col-md-5 col-lg-3 position_footer_relative">
-                <div class="footer_main_title py-3"> Paling Banyak Dilihat</div>
-                <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-                <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-                <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-                <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-                <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-                <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-                <div class="footer_position_absolute"><img src="{{asset('asset-news/images/footer_sub_tipik.png')}}" alt="img" class="width_footer_sub_img"/></div>
+                <?php
+                    $populer = App\news::limit(3)->where('file-type','gambar')->orderby('viewer','asc')->get();
+                ?>
+                <div class="footer_main_title py-3"> Terpopuler</div>
+                @foreach ($populer as $item)
+                    <div class="footer_makes_sub_font">{{$item->updated_at->format('F d, Y')}}</div>
+                    <a href="{{route('news.detail',$item->id)}}" class="footer_post pb-4 fa fa-angle-right">&nbsp;{{$item->title}}</a>
+                @endforeach
             </div>
             <div class="col-12 col-md-12 col-lg-4 ">
                 <div class="footer_main_title py-3"> Berita Up To Date</div>
@@ -73,11 +71,6 @@
     <div class="container">
         <div class="row  ">
             <div class="col-12 col-md-6 py-4 Reserved"> © 2020 <a href="" title="KORAN">KORAN</a>. Ruang Demokrasi. </div>
-            <div class="col-12 col-md-6 spdp_right py-4">
-                <a href="#" class="footer_last_part_menu">Home</a>
-                <a href="Contact_us.html" class="footer_last_part_menu">About</a>
-                <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
-                <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
         </div>
     </div>
 </div>

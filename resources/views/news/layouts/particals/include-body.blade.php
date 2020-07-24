@@ -9,5 +9,8 @@
         crossorigin="anonymous"></script>
 <!-- Waypoints -->
 <script src="{{asset('asset-news/js/jquery.waypoints.min.js')}}"></script>
+<!-- Parallax -->
+<script src="{{asset('asset-news/js/jquery.stellar.min.js')}}"></script>
 <!-- Main -->
 <script src="{{asset('asset-news/js/main.js')}}"></script>
+<script>if (!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){$(window).stellar();}</script>

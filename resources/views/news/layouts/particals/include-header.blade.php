@@ -12,3 +12,7 @@
     <!-- Modernizr JS -->
     <script src="{{asset('asset-news/js/modernizr-3.5.0.min.js')}}"></script>
     {{--  template  --}}
+
+    {{-- videoJS --}}
+      <link rel="stylesheet" href="{{asset('asset-news/js/videoJS/video-js.min.css')}}">
+      <script src='{{asset('asset-news/js/videoJS/video.min.js')}}'></script>

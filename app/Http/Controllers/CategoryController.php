@@ -19,10 +19,12 @@ class CategoryController extends Controller
         // halaman
         $populer = news::limit(9)->where('file-type', 'gambar')->where('category_id', $sample->id)->orderby('created_at', 'desc')->orderby('viewer', 'desc')->get();
         $terbaru = news::limit(4)->where('file-type', 'gambar')->where('category_id', $sample->id)->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->get();
+        $video   = news::limit(9)->where('file-type', 'video')->where('category_id', $sample->category_id)->orderby('created_at', 'desc')->orderby('viewer', 'desc')->get();
+        
 
-        $data = news::where('category_id', $sample->id)->orderby('created_at', 'desc')->paginate(10);
+        $data = news::where('category_id', $sample->id)->where('file-type', 'gambar')->orderby('created_at', 'desc')->paginate(10);
 
-        return view('news/filter',compact('all_tag','data', 'populer', 'terbaru','kategori'));
+        return view('news/filter',compact('all_tag','data', 'populer', 'terbaru','kategori','video'));
     }
 
     /**

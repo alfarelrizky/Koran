@@ -10,6 +10,6 @@ class category extends Model
     protected $fillable = ['NamaKategori'];
     public function news()
     {
-        return $this->HasMany(news::class,'category_id');
+        return $this->HasMany(news::class,'category_id')->where('file-type', 'gambar');
     }
 }

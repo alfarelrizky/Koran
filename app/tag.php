@@ -9,16 +9,21 @@ class tag extends Model
     protected $fillable = (['NamaTag']);
 
     public function news(){
-        return $this->belongsToMany(news::class);
+        return $this->belongsToMany(news::class)->where('file-type', 'gambar');
     }
 
     public function news_terbaru()
     {
-        return $this->belongsToMany(news::class)->orderby('created_at', 'desc')->orderby('updated_at', 'desc');
+        return $this->belongsToMany(news::class)->where('file-type', 'gambar')->orderby('created_at', 'desc')->orderby('updated_at', 'desc');
     }
 
     public function news_terpopuler()
     {
-        return $this->belongsToMany(news::class)->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->orderby('viewer', 'desc');
+        return $this->belongsToMany(news::class)->where('file-type', 'gambar')->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->orderby('viewer', 'desc');
+    }
+
+    public function videotentang()
+    {
+        return $this->belongsToMany(news::class)->where('file-type', 'video')->orderby('created_at', 'desc')->orderby('viewer', 'desc');
     }
 }

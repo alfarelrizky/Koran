@@ -26,7 +26,7 @@
                 <div class="footer_main_title py-3"> Kategori</div>
                 <ul class="footer_menu">
                     <?php
-                        $category = App\category::limit(8)->get();
+                        $category = App\category::limit(6)->get();
                     ?>
                     @foreach ($category as $item)
                         <li><a href="{{route('category.filter',$item->id)}}" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; {{$item->NamaKategori}}</a></li>
@@ -44,16 +44,10 @@
                 @endforeach
             </div>
             <div class="col-12 col-md-12 col-lg-4 ">
-                <div class="footer_main_title py-3"> Berita Up To Date</div>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/allef-vinicius-108153.jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/32-450x260.jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/download (1).jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/science-578x362.jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/vil-son-35490.jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/zack-minor-15104.jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/download.jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/download (2).jpg')}}" alt="img"/></a>
-                <a href="#" class="footer_img_post_6"><img src="{{asset('asset-news/images/ryan-moreno-98837.jpg')}}" alt="img"/></a>
+                <div class="footer_main_title py-3"> Berita Terbaru</div>
+                @foreach ($terbaru as $item)
+                    <a href="{{route('news.detail',$item->id)}}" class="footer_img_post_6"><img src="{{asset($item->file)}}" alt="img"/></a>
+                @endforeach
             </div>
         </div>
         <div class="row justify-content-center pt-2 pb-4">

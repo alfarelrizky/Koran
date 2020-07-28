@@ -14,16 +14,18 @@ class TagController extends Controller
         $tag = $sample->NamaTag;
 
         // getdata news
-        $data = $sample->news()->paginate(10);
+        $data = $sample->news()->where('file-type', 'gambar')->paginate(10);
 
         // getdata tag
         $all_tag = tag::limit(15)->get();
 
         // halaman
-        $populer = $sample->news_terpopuler()->limit(9)->get();
-        $terbaru = $sample->news_terbaru()->limit(4)->get();
+        $populer = $sample->news_terpopuler()->where('file-type', 'gambar')->limit(9)->get();
+        $terbaru = $sample->news_terbaru()->where('file-type', 'gambar')->limit(4)->get();
+        $video   = $sample->videotentang()->where('file-type', 'video')->limit(9)->get();
 
-        return view('news/filter', compact('all_tag','data', 'populer', 'terbaru', 'tag'));
+
+        return view('news/filter', compact('all_tag','data', 'populer', 'terbaru', 'tag','video'));
     }
     /**
      * Display a listing of the resource.

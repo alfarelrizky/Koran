@@ -18,4 +18,9 @@ class news extends Model
     {
         return $this->belongsToMany(tag::class);
     }
+
+    public function media()
+    {
+        return $this->belongsTo(media::class);
+    }
 }

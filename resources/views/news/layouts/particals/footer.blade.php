@@ -46,7 +46,7 @@
             <div class="col-12 col-md-12 col-lg-4 ">
                 <div class="footer_main_title py-3"> Berita Terbaru</div>
                 @foreach ($terbaru as $item)
-                    <a href="{{route('news.detail',$item->id)}}" class="footer_img_post_6"><img src="{{asset($item->file)}}" alt="img"/></a>
+                    <a href="{{route('news.detail',$item->id)}}" class="footer_img_post_6"><img src="{{asset('storage/'.$item->file)}}" alt="img"/></a>
                 @endforeach
             </div>
         </div>

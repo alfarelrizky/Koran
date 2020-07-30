@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(media::class, function (Faker $faker) {
     return [
         'NamaMedia' => $faker->company(),
-        'logo' => '',
+        'logo' => 'asset-news\images\logo-mediamasa\kompas.png',
     ];
 });

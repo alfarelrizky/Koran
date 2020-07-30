@@ -16,6 +16,18 @@
               <p>Dashboard Panel</p>
             </a>
           </li>
+          <li class="{{request()->is('admin/list_berita') ? 'active ':''}}">
+            <a href="{{route('admin.list_berita')}}">
+              <i class="tim-icons icon-atom"></i>
+              <p>List Berita</p>
+            </a>
+          </li>
+          <li class="{{request()->is('admin/list_media') ? 'active ':''}}">
+            <a href="{{route('admin.list_media')}}">
+              <i class="tim-icons icon-components"></i>
+              <p>List Media</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

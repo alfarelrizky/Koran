@@ -20,7 +20,7 @@
                         <div class="row pb-4">
                             <div class="col-md-5">
                                 <div class="fh5co_hover_news_img">
-                                    <div class="fh5co_news_img"><img src="{{asset($item->file)}}" alt=""/></div>
+                                    <div class="fh5co_news_img"><img src="{{asset('storage/'.$item->file)}}" alt=""/></div>
                                     <div></div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                     @forelse ($terbaru as $item)
                         <div class="row pb-3">
                             <div class="col-5 align-self-center">
-                                <img src="{{asset($item->file)}}" alt="img" class="fh5co_most_trading"/>
+                                <img src="{{asset('storage/'.$item->file)}}" alt="img" class="fh5co_most_trading"/>
                             </div>
                             <div class="col-7 paddding">
                                 <div class="most_fh5co_treding_font"><a style='color:black;text-decoration:none;' href="{{route('news.detail',$item->id)}}">{{$item->title}}</a></div>
@@ -123,7 +123,7 @@
                 @forelse ($populer as $item)
                     <div class="item px-2">
                         <div class="fh5co_hover_news_img">
-                            <div class="fh5co_news_img"><img src="{{asset($item->file)}}" alt=""/></div>
+                            <div class="fh5co_news_img"><img src="{{asset('storage/'.$item->file)}}" alt=""/></div>
                             <div>
                                 <a href="{{route('news.detail',$item->id)}}" class="d-block fh5co_small_post_heading"><span class="">{{$item->title}}</span></a>
                                 <div class="c_g"><i class="fa fa-clock-o"></i> {{$item->updated_at->format('F d, Y')}}</div>

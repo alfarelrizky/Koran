@@ -9,7 +9,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:void(0)" style='width: 15%;margin-left: 15px;top:0px;'><img src="{{asset('logo/logo-white.png')}}" alt="img" class="fh5co_logo_width"/></a>
+                        <a class="navbar-brand" href="javascript:void(0)" style='width: 12%;margin-left: 10px;top:0px;'><img src="{{asset('logo/logo-white.png')}}" alt="img" class="fh5co_logo_width"/></a>
                     </div>
                     <div>
                         <button class="navbar-toggler mt-2" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">

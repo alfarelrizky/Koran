@@ -16,7 +16,7 @@
                     <div class="item px-2">
                         <div class="fh5co_latest_trading_img_position_relative">
                             <div class="fh5co_latest_trading_img">
-                                <img src="{{asset($item->file)}}" alt="" class="fh5co_img_special_relative"/>
+                                <img src="{{asset('storage/'.$item->file)}}" alt="" class="fh5co_img_special_relative"/>
                             </div>
                             <div class="fh5co_latest_trading_img_position_absolute"></div>
                             <div class="fh5co_latest_trading_img_position_absolute_1">
@@ -40,7 +40,7 @@
                 @foreach ($terbaru as $item)
                     <div class="item px-2">
                             <div class="fh5co_hover_news_img">
-                                <div class="fh5co_news_img"><img src="{{asset($item->file)}}" alt=""/></div>
+                                <div class="fh5co_news_img"><img src="{{asset('storage/'.$item->file)}}" alt=""/></div>
                                 <div>
                                     <small>{{$item->media->NamaMedia}}</small>
                                     <a href="{{route('news.detail',$item->id)}}" class="d-block fh5co_small_post_heading"><span style="color:black;">{{$item->title}}</span></a>

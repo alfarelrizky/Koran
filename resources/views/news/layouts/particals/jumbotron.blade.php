@@ -5,7 +5,7 @@
             $id[$angka] = $item->id;
             $media[$angka] = $item->media->NamaMedia;
             $title[$angka] = $item->title;
-            $file[$angka] = $item->file;
+            $file[$angka] = 'storage/'.$item->file;
             $lupdate[$angka] = $item->updated_at->format('M d, Y'); 
             $angka++;
             ?>

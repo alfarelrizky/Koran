@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class news extends Model
 {
     protected $table = 'news';
-    protected $fillable = ['title','content','file-type','file','media_massa','viewer', 'editor'];
+    protected $fillable = ['title','content','file-type','file','media_massa','viewer','editor','category_id', 'media_id'];
 
     public function category()
     {

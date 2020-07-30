@@ -20,9 +20,21 @@ Route::prefix('news')->group(function() {
 });
 
 // admin
-route::prefix('admin')->group(function(){
+route::prefix('admin')->middleware('auth')->group(function(){
+
+    //berita
     route::get('/','AdministratorController@index')->name('admin.index');
+    route::get('/list_berita', 'AdministratorController@list_berita')->name('admin.list_berita');
+    route::get('/list_berita_api', 'AdministratorController@list_berita_api')->name('admin.list_berita_api');
+    route::post('/list_berita/tambah', 'AdministratorController@tambah_berita')->name('admin.tambah_berita');
+    route::get('/list_berita/edit/{sample:id}','AdministratorController@route_edit_berita')->name('admin.edit_berita');
+    route::patch('/list_berita/prosesedit/{sample:id}','AdministratorController@edit_berita')->name('admin.proses_edit_berita');
+    route::delete('/list_berita/hapus/{sample:id}','AdministratorController@hapus_list_berita')->name('admin.hapus_berita');
+
+    // media
+    route::get('/media','AdministratorController@media')->name('admin.list_media');
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

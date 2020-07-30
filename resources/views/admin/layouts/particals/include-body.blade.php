@@ -10,6 +10,7 @@
   <script src="{{asset('asset-admin/assets/js/plugins/chartjs.min.js')}}"></script>
   <!--  Notifications Plugin    -->
   <script src="{{asset('asset-admin/assets/js/plugins/bootstrap-notify.js')}}"></script>
+
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('asset-admin/assets/js/black-dashboard.min.js?v=1.0.0')}}"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{asset('asset-admin/assets/demo/demo.js')}}"></script>
@@ -139,3 +140,20 @@
         application: "black-dashboard-free"
       });
   </script>
+
+{{-- iziToast --}}
+<script src="{{asset('js/iziToast/iziToast.min.js')}}"></script>
+  
+
+  {{-- data tables --}}
+  <script type="text/javascript" language="javascript" src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
+  <script type="text/javascript" language="javascript" src="{{asset('js/datatables/dataTables.bootstrap4.min.js')}}"></script>
+  @stack('datatables_ajax')
+
+  {{-- select 2 --}}
+<script src="{{asset('js/select2/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.selecttag').select2();
+    });
+</script>

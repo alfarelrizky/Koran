@@ -24,7 +24,7 @@
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
-                    <img src="{{Auth::user()->photo ? asset(Auth::user()->photo) : asset('logo/logo-simple-navbar.png')}}" alt="Profile Photo">
+                    <img src="{{asset('storage/'.Auth::user()->photo)}}" alt="Profile Photo">
                   </div>
                   <b class="caret d-none d-lg-block d-xl-block"></b>
                 </a>

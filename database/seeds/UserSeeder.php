@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'email' => 'alfarelrizky99@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('Cryptonesia22'),
-            'photo' => 'logo/logo-simple-navbar.png',
+            'photo' => 'images/photouser/default-avatar.png',
             'level' => 'admin'
         ]);
     }

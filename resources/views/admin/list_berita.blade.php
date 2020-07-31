@@ -26,6 +26,9 @@
                                             Title
                                         </th>
                                         <th>
+                                            Content Berita
+                                        </th>
+                                        <th>
                                             Media
                                         </th>
                                         <th>
@@ -131,7 +134,7 @@
                                 </div>
                             </div>     
                             <div class="form-group" id="bagian_gambar" style="display:none;">
-                                <a href="" id="linkgambarlama" target="_blank" style="color:black;text-decoration:none;"><label for="" id="infogambarlama"></label></a>
+                                 <a href="" id="linkgambarlama" target="_blank" style="color:black;text-decoration:none;"><label for="" id="infogambarlama"></label></a>
                                 <input type="hidden" class='form-control @error('file') is-invalid @enderror' name="gambar" id="gambar" style='opacity:100%;position: static;color:black;'>
                                 @error('file')
                                     {{$message}}
@@ -200,6 +203,10 @@
                     data : 'title'
                 },
                 {
+                    name : 'content',
+                    data : 'content'
+                },
+                {
                     name : "media.NamaMedia",
                     data : "media.NamaMedia"
                 },
@@ -260,8 +267,9 @@
                     if (data['file-type'] == 'gambar') {
                         gambar_func();
                         // $('#gambar').val(data.file);
-                        $('#linkgambarlama').attr('href','http://127.0.0.1:8000/storage/'+ data.file);
+                        $('#linkgambarlama').attr('href',"{{asset('/storage').'/'}}"+data.file);
                         $('#infogambarlama').text('GAMBAR LAMA : '+data.title);
+                        $('#gambar').attr('required',false);
                     }else{
                         video_func();
                         $('#video').val(data.file);

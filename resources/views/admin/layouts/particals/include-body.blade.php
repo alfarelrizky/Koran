@@ -141,8 +141,8 @@
       });
   </script>
 
-{{-- iziToast --}}
-<script src="{{asset('js/iziToast/iziToast.min.js')}}"></script>
+  {{-- iziToast --}}
+  <script src="{{asset('js/iziToast/iziToast.min.js')}}"></script>
   
 
   {{-- data tables --}}

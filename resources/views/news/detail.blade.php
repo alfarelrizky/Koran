@@ -48,7 +48,7 @@
                     @if ($detail['file-type'] == 'video')
                         <div class="d-flex justify-content-left">
                             <div>
-                                <img style='border-radius:40px;width:45px;' src="{{asset($detail->media->logo)}}" alt="Logo">
+                                <img style='border-radius:40px;width:45px;' src="{{asset('storage/'.$detail->media->logo)}}" alt="Logo">
                             </div>
                             <div class='ml-2'>
                                 <div>

@@ -70,12 +70,10 @@
                                 @enderror
                             </div> 
                             <div class="form-group">
-                                <label for="">Password Baru</label>
-                                <div class="text-secondary">
-                                    <small>Isikan Jika Perlu</small>
-                                </div>
-                                <input type="password" name='password_baru' id='password_baru' class="form-control @error('password_baru') is-invalid @enderror" style='color:black;'></input>
-                                @error('password_baru')
+                                <label for="" id='labelpwd'>Password </label>
+                                <input type="password" id='inputpwd' name='password' id='password' class="form-control @error('password') is-invalid @enderror" style='color:black;'></input>
+                                <div class="text-secondary"id='labelpesanpwd' style="color:black !important;"><small></small></div>
+                                @error('password')
                                     {{$message}}
                                 @enderror
                             </div> 
@@ -88,6 +86,11 @@
                             </div>  
                             <div class="form-group">
                                 <label for="">Photo</label>
+                                <a href="" id="linkpesanphoto" target="_blank">
+                                    <div class="text-secondary"id='labelpesanphoto' style="color:black !important;">
+                                        <small></small>
+                                    </div>
+                                </a>
                                 <input type="file" name='photo' id='photo' class="form-control @error('photo') is-invalid @enderror" style='opacity:100%;position: static;color:black;'>
                                 @error('photo')
                                     {{$message}}
@@ -97,8 +100,8 @@
                                 <label for="">Level</label>
                                 <select name='level' id='level' class="form-control @error('level') is-invalid @enderror" style='color:black;'>
                                     <option value="" selected>-Pilih Hak Akses-</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
+                                    <option value="admin" data-value='admin'>Admin</option>
+                                    <option value="user" data-value='user'>User</option>
                                 </select>
                                 @error('level')
                                     {{$message}}
@@ -159,6 +162,10 @@
             $('#form-template')[0].reset();
             $('#modal-title').text('Form Tambah Akun');
             $('#modal-button').text('Tambah');
+            $('#labelpwd').text('Password');
+            $('#labelpesanpwd').text('');
+            $('#inputpwd').attr('name','password');
+            $('#inputpwd').attr('id','password');
         }
 
         // conf edit
@@ -168,20 +175,61 @@
             $('#form-template')[0].reset();
             $('#modal-title').text('Form Edit Akun');
             $('#modal-button').text('Edit');
+            $('#labelpwd').text('Password Baru');
+            $('#labelpesanpwd').text('Isi Untuk Mengganti Password baru');
+            $('#inputpwd').attr('name','password_baru');
+            $('#inputpwd').attr('id','password_baru');
             $.ajax({
                 url : "{{url('admin/user_route_edit').'/'}}"+id,
                 type : 'get',
                 success : function(data){
-                    console.log(data);
+                    // console.log(data);
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#email').val(data.email);
-                    $('#photo').val(data.photo);
-                    $('#level').val(data.level);
+                    $("#level option[data-value='" + data.level +"']").attr("selected","selected");
+                    $('#labelpesanphoto').text('Foto Saat ini : '+ data.name);
+                    $('#linkpesanphoto').attr('href',"{{asset('storage').'/'}}"+data.photo);
                 },
                 error : function(){
-                    alert('Oops Get Data Error');
+                    iziToast.error({
+                        title: 'Oops!',
+                        message: 'Get Data Gagal ,Coba Lagi',
+                    });
                 }
+            });
+        }
+
+        const formhapus = (id) =>{
+            let token = $("meta[name='csrf_token']").attr('content');
+            swal({
+                title: "Kamu Yakin Menghapusnya?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url : "{{url('admin/user_hapus').'/'}}"+id,
+                    type : "post",
+                    data : {"_method" : "DELETE" , "_token" : token},
+                    success : function(){
+                        swal("User Berhasil Di Hapus!", {
+                        icon: "success",
+                        });
+                        table.ajax.reload();
+                    },
+                    error : function(){
+                        swal("User Gagal Di Hapus!", {
+                        icon: "error",
+                        });
+                    }
+                }); 
+            } else {
+                swal("User Tidak Di Hapus!");
+            }
             });
         }
 

@@ -12,6 +12,11 @@ class tag extends Model
         return $this->belongsToMany(news::class)->where('file-type', 'gambar');
     }
 
+    public function news_count()
+    {
+        return $this->belongsToMany(news::class)->where('file-type', 'gambar');
+    }
+
     public function news_terbaru()
     {
         return $this->belongsToMany(news::class)->where('file-type', 'gambar')->orderby('created_at', 'desc')->orderby('updated_at', 'desc');

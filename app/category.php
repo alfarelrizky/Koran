@@ -12,4 +12,9 @@ class category extends Model
     {
         return $this->HasMany(news::class,'category_id')->where('file-type', 'gambar');
     }
+
+    public function news_count()
+    {
+        return $this->HasMany(news::class, 'category_id');
+    }
 }

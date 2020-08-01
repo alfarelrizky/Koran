@@ -157,3 +157,6 @@
         $('.selecttag').select2();
     });
 </script>
+
+{{-- chart JS --}}
+@stack('chartjs')

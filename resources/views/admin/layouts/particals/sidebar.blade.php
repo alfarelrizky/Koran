@@ -22,24 +22,28 @@
               <p>List Berita</p>
             </a>
           </li>
-          <li class="{{request()->is('admin/media') ? 'active ':''}}">
-            <a href="{{route('admin.list_media')}}">
-              <i class="tim-icons icon-components"></i>
-              <p>List Media</p>
-            </a>
-          </li>
+          @if (Auth::user()->level == 'admin')
+              <li class="{{request()->is('admin/media') ? 'active ':''}}">
+                <a href="{{route('admin.list_media')}}">
+                  <i class="tim-icons icon-components"></i>
+                  <p>List Media</p>
+                </a>
+              </li>
+          @endif
           <li class="{{request()->is('admin/category_tag') ? 'active ':''}}">
             <a href="{{route('admin.category_tag')}}">
               <i class="tim-icons icon-tag"></i>
               <p>Category & Tag</p>
             </a>
           </li>
-          <li class="{{request()->is('admin/user') ? 'active ':''}}">
-            <a href="{{route('admin.user')}}">
-              <i class="tim-icons icon-single-02"></i>
-              <p>User</p>
-            </a>
-          </li>
+          @if (Auth::user()->level == 'admin')
+            <li class="{{request()->is('admin/user') ? 'active ':''}}">
+              <a href="{{route('admin.user')}}">
+                <i class="tim-icons icon-single-02"></i>
+                <p>User</p>
+              </a>
+            </li>
+          @endif 
         </ul>
       </div>
     </div>

@@ -59,6 +59,72 @@ class AdministratorController extends Controller
         return view('admin/index');
     }
 
+    public function index_api()
+    {
+        $viewer_terbanyak = news::orderby('viewer', 'desc')->limit(10)->get();
+        
+        if (request()->ajax()) {
+            return DataTables()->of($viewer_terbanyak)
+                    ->addColumn('label',function($viewer_terbanyak){
+                        return \Str::limit($viewer_terbanyak->title, 12,'..');
+                    })
+                    ->rawColumns(['label'])
+                    ->make(true);
+        }
+        return view('admin/index');
+    }
+
+    public function media_api()
+    {
+        $media_terbanyak = media::get();
+        $no = 0;
+
+        foreach ($media_terbanyak as $key) {
+            $media[$no] = $key;
+            $jumlah[$no] =$key->news()->sum('viewer');
+            $no++;
+        }
+        $a = $media;
+        $b = $jumlah;
+        // return $jumlah[0];
+        if (request()->ajax()) {
+            return compact('jumlah', 'media');
+        }
+        return view('admin/index', compact('jumlah', 'media'));
+    }
+
+    public function kategori_graph_api()
+    {
+        $category_terbanyak = category::get();
+        $no = 0;
+
+        foreach ($category_terbanyak as $key) {
+            $category[$no] = $key;
+            $jumlah[$no] = $key->news_count()->count();
+            $no++;
+        }
+        if (request()->ajax()) {
+            return compact('category', 'jumlah');
+        }
+        return view('admin/index');
+    }
+
+    public function tag_graph_api()
+    {
+        $tag_terbanyak = tag::get();
+        $no = 0;
+
+        foreach ($tag_terbanyak as $key) {
+            $tag[$no] = $key;
+            $jumlah[$no] = $key->news_count()->count();
+            $no++;
+        }
+        if (request()->ajax()) {
+            return compact('tag', 'jumlah');
+        }
+        return view('admin/index');
+    }
+
     public function tambah_berita()
     {
         $this->validasi();
@@ -394,7 +460,52 @@ class AdministratorController extends Controller
     }
     public function user_route_edit(User $sample)
     {
-        $sample['password'] = Crypt::decryptString($sample->password);
         return $sample;
+    }
+
+    public function user_edit(User $sample)
+    {
+        $databaru = request()->all();
+        
+        // pwd
+        if ($databaru['password_baru']) {
+            $databaru['password'] = bcrypt($databaru['password_baru']);
+        }else{
+            $databaru['password'] = $sample->password;
+        }
+
+        //gambar
+        if (request()->photo) {
+            // delete
+            if ($sample->photo != 'images/photouser/default-avatar.png') {
+                \Storage::delete($sample->photo);
+            }
+
+            // process
+            $gambar = Request()->photo;
+            $slug = \Str::slug($databaru['name']);
+            $url = $gambar->storeAS('images/photouser',"{$slug}.{$gambar->extension()}");
+            $databaru['photo'] = $url;
+        } else {
+            $databaru['photo'] = $sample->photo;
+        }
+
+        $sample->update($databaru);
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    public function user_hapus(User $sample)
+    {
+        // delete
+        if ($sample->photo != 'images/photouser/default-avatar.png') {
+            \Storage::delete($sample->photo);
+        }
+        
+        $sample->delete();
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }

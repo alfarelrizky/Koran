@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',function(){
@@ -7,7 +8,6 @@ Route::get('/',function(){
 });
 
 // news
-Route::prefix('news')->group(function() {
     // news
     Route::get('/','NewsController@index')->name('news.index');
     Route::get('/detail/{sample:id}', 'NewsController@detail')->name('news.detail');
@@ -17,20 +17,25 @@ Route::prefix('news')->group(function() {
     // filter Tag
     route::get('/filterTag/{sample:id}','TagController@filter')->name('tag.filter');
 
-});
 
 // admin
 route::prefix('admin')->middleware('auth')->group(function(){
 
     //berita
     route::get('/','AdministratorController@index')->name('admin.index');
+    route::get('/index_api', 'AdministratorController@index_api')->name('admin.index_api');
+    route::get('/media_api', 'AdministratorController@media_api')->name('admin.media_api');
+    route::get('/kategori_graph_api', 'AdministratorController@kategori_graph_api')->name('admin.kategori_graph_api');
+    route::get('/tag_graph_api', 'AdministratorController@tag_graph_api')->name('admin.tag_graph_api');
+
+
     route::get('/list_berita', 'AdministratorController@list_berita')->name('admin.list_berita');
     route::get('/list_berita_api', 'AdministratorController@list_berita_api')->name('admin.list_berita_api');
     route::post('/list_berita/tambah', 'AdministratorController@tambah_berita')->name('admin.tambah_berita');
     route::get('/list_berita/edit/{sample:id}','AdministratorController@route_edit_berita')->name('admin.edit_berita');
     route::patch('/list_berita/prosesedit/{sample:id}','AdministratorController@edit_berita')->name('admin.proses_edit_berita');
     route::delete('/list_berita/hapus/{sample:id}','AdministratorController@hapus_list_berita')->name('admin.hapus_berita');
-
+    
     // media
     route::get('/media', 'AdministratorController@media')->name('admin.list_media');
     route::get('/mediaapi','AdministratorController@mediaapi')->name('admin.list_media_api');
@@ -57,10 +62,9 @@ route::prefix('admin')->middleware('auth')->group(function(){
     route::get('/user', 'AdministratorController@user')->name('admin.user');
     route::get('/user_api', 'AdministratorController@user_api')->name('admin.user_api');
     route::post('/user_tambah', 'AdministratorController@user_tambah')->name('admin.user_tambah');
-    route::get('/user_route_edit/{sample:id}','AdministratorController@user_route_edit')->name('admin.user_route_edit');
+    route::get('/user_route_edit/{sample:id}', 'AdministratorController@user_route_edit')->name('admin.user_route_edit');
     route::patch('/user_edit/{sample:id}', 'AdministratorController@user_edit')->name('admin.user_edit');
-    route::delete('/user_hapus/{sample:id}','AdministratorController@user_hapus')->name('admin.user_hapus');
-
+    route::delete('/user_hapus/{sample:id}', 'AdministratorController@user_hapus')->name('admin.user_hapus');
 });
 
 Auth::routes();

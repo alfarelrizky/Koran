@@ -19,3 +19,6 @@
 
     {{-- iziToast --}}
     <link rel="stylesheet" href="{{asset('css/iziToast/iziToast.min.css')}}">
+
+    {{-- chart js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>

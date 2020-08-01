@@ -34,8 +34,9 @@
         <li class="header-title"> Support Official</li>
         <br><br>
         <li class="button-container text-center">
-          <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-          <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
+          <a href="https://github.com/alfarelrizky/Koran" target='_blank' id="github" class="btn btn-round btn-info"><i class="fab fa-github"></i></a>
+          <a href="https://www.facebook.com/alfarel.rizky.5?ref_component=mbasic_home_header&ref_page=%2Fwap%2Fhome.php&refid=7" target='_blank' id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://api.whatsapp.com/send?phone=6289624035192&text=Hai%20Alfarel%20Rizqi%0ASaya%20Tertarik%20dengan%20Koran%20Website" target='_blank' id="Whatsapp" class="btn btn-round btn-info"><i class="fab fa-whatsapp"></i></a>
         </li>
       </ul>
     </div>

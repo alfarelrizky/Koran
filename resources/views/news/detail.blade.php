@@ -6,7 +6,7 @@
             <div id="fh5co-title-box" style="background-image: url('{{asset('storage/'.$detail->file)}}'); background-position: 50% 90.5px;" data-stellar-background-ratio="0.5">
                 <div class="overlay"></div>
                 <div class="page-title">
-                    <img src="{{asset($detail->media->logo)}}" alt="Logo">
+                    <img src="{{asset('storage/'.$detail->media->logo)}}" alt="Logo">
                     <span>{{$detail->media->NamaMedia}}<br>{{$detail->updated_at->format('F d, Y')}}</span>
                     <h2>{{$detail->title}}</h2>
                 </div>

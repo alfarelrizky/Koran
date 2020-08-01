@@ -149,6 +149,18 @@
                                     {{$message}}
                                 @enderror
                             </div>
+                            {{--  captcha  --}}
+                            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">                            
+                                <div class="col-md-6 pull-center">
+                                {!! app('captcha')->display() !!}
+                            
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+                                </div>
+                            </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -303,6 +315,7 @@
                                 title: 'Berhasil',
                                 message: 'Berita Baru Berhasil Di Simpan',
                             });
+                            grecaptcha.reset();
                         },
                         error : function(e){
                             iziToast.error({

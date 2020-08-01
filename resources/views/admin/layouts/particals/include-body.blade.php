@@ -160,3 +160,6 @@
 
 {{-- chart JS --}}
 @stack('chartjs')
+
+{{--  captcha  --}}
+<script src='https://www.google.com/recaptcha/api.js'></script>

@@ -28,6 +28,7 @@ class AdministratorController extends Controller
                 'editor' => 'required',
                 'category_id' => 'required',
                 'media_id' => 'required',
+                'g-recaptcha-response' => 'required|captcha',
             ]);
         } elseif (request()->video) {
             request()->validate([
@@ -38,6 +39,7 @@ class AdministratorController extends Controller
                 'editor' => 'required',
                 'category_id' => 'required',
                 'media_id' => 'required',
+                'g-recaptcha-response' => 'required|captcha',
             ]);
         }
     }
@@ -51,6 +53,7 @@ class AdministratorController extends Controller
             'email' => 'required',
             'photo' => 'image|mimes:jpg,jpeg,png|max:10000',
             'level' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
     }
 

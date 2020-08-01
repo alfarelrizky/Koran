@@ -106,7 +106,20 @@
                                 @error('level')
                                     {{$message}}
                                 @enderror
-                            </div>   
+                            </div>  
+                            
+                            {{--  captcha  --}}
+                            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">                            
+                                <div class="col-md-6 pull-center">
+                                {!! app('captcha')->display() !!}
+                            
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -190,6 +203,7 @@
                     $("#level option[data-value='" + data.level +"']").attr("selected","selected");
                     $('#labelpesanphoto').text('Foto Saat ini : '+ data.name);
                     $('#linkpesanphoto').attr('href',"{{asset('storage').'/'}}"+data.photo);
+                    grecaptcha.reset();
                 },
                 error : function(){
                     iziToast.error({

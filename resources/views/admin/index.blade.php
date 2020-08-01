@@ -6,11 +6,11 @@
             <div class="card card-chart">
                 <div class="card-header ">
                     <div class="row">
-                        <div class="col-sm-6 text-left">
+                        <div class="col-md-6 text-left">
                             <h5 class="card-category">Viewer</h5>
                             <h2 class="card-title">Terbanyak</h2>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-md-6">
                             <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                                 <label class="btn btn-sm btn-primary btn-simple active" onclick="berita();" id="0">
                                     <input type="radio" name="options" checked="">
@@ -31,13 +31,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <canvas id="myChart" width="100%" height="20px"></canvas>
+                    <canvas id="myChart" width="100%" height="40px"></canvas>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 col-sm-12">
             <div class="card card-chart">
                 <div class="card-header ">
                     <div class="row">
@@ -48,11 +48,11 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <canvas id="category_graph" width="100%" height="50px"></canvas>
+                    <canvas id="category_graph" width="100%" height="60px"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6 col-sm-12">
             <div class="card card-chart">
                 <div class="card-header ">
                     <div class="row">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <canvas id="tag_graph" width="100%" height="50px"></canvas>
+                    <canvas id="tag_graph" width="100%" height="60px"></canvas>
                 </div>
             </div>
         </div>

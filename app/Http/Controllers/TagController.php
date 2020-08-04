@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\category;
 use App\news;
 use App\tag;
 use Illuminate\Http\Request;
@@ -10,6 +11,9 @@ class TagController extends Controller
 {
     public function filter(tag $sample)
     {
+        $populer = news::limit(3)->where('file-type', 'gambar')->orderby('viewer', 'desc')->get();
+        $list_category = category::limit(10)->get();
+
         // mode
         $tag = $sample->NamaTag;
 
@@ -25,7 +29,7 @@ class TagController extends Controller
         $video   = $sample->videotentang()->where('file-type', 'video')->limit(9)->get();
 
 
-        return view('news/filter', compact('all_tag','data', 'populer', 'terbaru', 'tag','video'));
+        return view('news/filter', compact('all_tag','data', 'populer', 'terbaru', 'tag','video','populer','list_category'));
     }
     /**
      * Display a listing of the resource.

@@ -12,6 +12,8 @@ class CategoryController extends Controller
 
     public function filter(category $sample)
     {
+        $list_category = category::limit(10)->get();
+        $populer = news::limit(3)->where('file-type', 'gambar')->orderby('viewer', 'desc')->get();
         // mode
         $kategori = $sample->NamaKategori;
         // getdata tag
@@ -24,7 +26,7 @@ class CategoryController extends Controller
 
         $data = news::where('category_id', $sample->id)->where('file-type', 'gambar')->orderby('created_at', 'desc')->paginate(10);
 
-        return view('news/filter',compact('all_tag','data', 'populer', 'terbaru','kategori','video'));
+        return view('news/filter',compact('all_tag','data', 'populer', 'terbaru','populer','kategori','video','list_category'));
     }
 
     /**

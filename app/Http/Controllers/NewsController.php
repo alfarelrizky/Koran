@@ -17,16 +17,20 @@ class NewsController extends Controller
     public function index()
     {
         // halaman
+        $populer = news::limit(3)->where('file-type', 'gambar')->orderby('viewer', 'desc')->get();
+        $list_category = category::limit(10)->get();
         $data_jumbotron = news::limit(5)->where('file-type','gambar')->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->get();
         $terbaru        = news::limit(5)->where('file-type','gambar')->orderby('created_at', 'desc')->orderby('created_at','desc')->get();
         $trending       = news::limit(10)->where('file-type', 'gambar')->orderby('created_at', 'desc')->orderby('viewer', 'desc')->get();
         $video          = news::limit(9)->where('file-type','video')->orderby('created_at', 'desc')->orderby('viewer','desc')->get();
-        return view('news/index',compact('data_jumbotron','trending','terbaru','category','video'));
+        return view('news/index',compact('data_jumbotron','trending','terbaru','category','video', 'list_category','populer'));
     }
 
     public function detail(news $sample)
     {
         // halaman
+        $populer = news::limit(3)->where('file-type', 'gambar')->orderby('viewer', 'desc')->get();
+        $list_category = category::limit(10)->get();
         $sample->category;
         $detail            = $sample;
         $detail->media;
@@ -41,12 +45,14 @@ class NewsController extends Controller
         $terbaru = news::limit(4)->where('file-type', 'gambar')->where('category_id', $sample->category_id)->orderby('created_at', 'desc')->orderby('updated_at', 'desc')->get();
         $video   = news::limit(9)->where('file-type', 'video')->where('category_id', $sample->category_id)->orderby('created_at', 'desc')->orderby('viewer', 'desc')->get();
         
-        return view('news/detail',compact('all_tag','detail','populer','terbaru','video'));
+        return view('news/detail',compact('all_tag','detail','populer','terbaru','video','list_category','populer'));
     }
 
     public function search()
     {
 
+        $populer = news::limit(3)->where('file-type', 'gambar')->orderby('viewer', 'desc')->get();
+        $list_category = category::limit(10)->get();
         $sample = request()->search;
 
         // getdata news
@@ -64,7 +70,7 @@ class NewsController extends Controller
         $video   = news::limit(9)->where('title', 'like', '%' . $sample . '%')->where('file-type', 'video')->get();
 
 
-        return view('news/filter', compact('all_tag', 'data', 'populer', 'terbaru', 'pencarian', 'video'));
+        return view('news/filter', compact('all_tag', 'data', 'populer', 'terbaru', 'pencarian', 'video','list_category','populer'));
     }
 
     /**

@@ -46,12 +46,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{request()->is('news') ? 'active':''}}">
-                        <?php
-                            $list_kategori = App\Category::limit(10)->get();
-                        ?>
                         <a class="nav-link" style='margin:0px 5px !important;' href="{{route('news.index')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    @foreach ($list_kategori as $item)
+                    @foreach ($list_category as $item)
                     <li class="nav-item {{request()->is('news/filtercategory/'.$item->id) ? 'active':''}}">
                         <a class="nav-link" style='margin:0px 5px !important;' href="{{route('category.filter',$item->id)}}">{{$item->NamaKategori}} <span class="sr-only">(current)</span></a>
                     </li>

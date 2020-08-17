@@ -1,25 +1,25 @@
 @extends('news/layouts/app')
 
 @section('content')
-    @if ($detail['file-type'] =='gambar')
-        <div>
-            <div id="fh5co-title-box" style="background-image: url('{{asset('storage/'.$detail->file)}}'); background-position: 50% 90.5px;" data-stellar-background-ratio="0.5">
-                <div class="overlay"></div>
-                <div class="page-title">
-                    <img src="{{asset('storage/'.$detail->media->logo)}}" alt="Logo">
-                    <span>{{$detail->media->NamaMedia}}<br>{{$detail->updated_at->format('F d, Y')}}</span>
-                    <h2>{{$detail->title}}</h2>
-                </div>
-            </div>
-        </div>
-    @endif
     <div id="fh5co-single-content" class="container-fluid pb-4 pt-4 paddding">
-        <div class="container paddding">
+        <div class="container padding">
+            @if ($detail['file-type'] =='gambar')
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class='mb-1 pl-2 pr-2'>
+                            <h3>{{$detail->title}}</h3>
+                        </div>
+                        <div>
+                            <img src="{{asset('storage/'.$detail->file)}}" alt="" width="100%" height="500px"/>
+                        </div>
+                    </div>
+                </div>
+            @endif
             @if ($detail['file-type'] == 'video')
                 <div class='row'>
                     <div class="col-md-12">
-                        <div class='mb-4'>
-                            <h2>{{$detail->title}}</h2>
+                        <div class='mb-1 pl-2 pr-2'>
+                            <h3>{{$detail->title}}</h3>
                         </div>
                         <div class="fh5co_hover_news_img">
                             <div class="fh5co_hover_news_img_video_tag_position_relative">
@@ -43,23 +43,21 @@
                     </div>
                 </div>
             @endif
-            <div class="row mx-0 mt-3">
+            <div class="row mx-0 mt-1">
                 <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
-                    @if ($detail['file-type'] == 'video')
-                        <div class="d-flex justify-content-left">
+                    <div class="d-flex justify-content-left">
+                        <div>
+                            <img style='border-radius:40px;width:45px;' src="{{asset('storage/'.$detail->media->logo)}}" alt="Logo">
+                        </div>
+                        <div class='ml-2'>
                             <div>
-                                <img style='border-radius:40px;width:45px;' src="{{asset('storage/'.$detail->media->logo)}}" alt="Logo">
+                                <strong>{{$detail->media->NamaMedia}}</strong>
                             </div>
-                            <div class='ml-2'>
-                                <div>
-                                    <strong>{{$detail->media->NamaMedia}}</strong>
-                                </div>
-                                <div>
-                                    <small>{{$detail->updated_at->format('F d, Y')}}</small>
-                                </div>
+                            <div>
+                                <small>{{$detail->updated_at->format('F d, Y')}}</small>
                             </div>
                         </div>
-                    @endif
+                    </div>
                     <div class='mt-3 mb-2'>
                         <a href="{{route('category.filter',$detail->category_id)}}" class="fh5co_tagg" style='border-radius: 50px;padding: 3px 8px;'>
                             <small>{{$detail->category->NamaKategori}}</small>
